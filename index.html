@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Random-Password Generator</title>
+</head>
+<style>
+   body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+   }
+
+   input{
+      margin-bottom: 100px;
+      width: 800px;
+   }
+</style>
+<body>
+   <h1 class="header">Generate random password</h1>
+   <input type="text" class="generated-password">
+   <button class="gen-btn"
+   onclick="genPass()"
+   >Generate Password</button>
+
+ 
+     
+
+
+   
+
+
+</body>
+
+<script>
+   const passwordGenerated=document.querySelector(".generated-password");
+   const passwordGenerator=document.querySelector(".gen-btn");
+
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+const numbers   = "0123456789";
+const symbols   = "!@#$%^&*()";
+const length=10;
+const allchracters= upperCase+lowerCase+symbols+numbers
+
+
+
+function genPass(){
+ let password="";
+ 
+   password+=upperCase[Math.floor(Math.random()*upperCase.length)];
+   password+=lowerCase[Math.floor(Math.random()*lowerCase.length)];
+   password+=symbols[Math.floor(Math.random()*symbols.length)];
+   password+=numbers[Math.floor(Math.random()*numbers.length)];
+   
+   while(length>password.length){
+
+       password+=allchracters[Math.floor(Math.random()*allchracters.length)];
+   }
+
+
+ passwordGenerated.value= password;
+
+     console.log(password);
+}
+
+
+
+</script>
+</html>
