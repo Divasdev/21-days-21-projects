@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Quote Generator</title>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: linear-gradient(135deg, #7b4397, #dc2430);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         height: 100vh;
+      }
+
+      .quote-box {
+         background: #fff;
+         width: 90%;
+         max-width: 700px;
+         padding: 40px;
+         border-radius: 15px;
+         text-align: center;
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .quote-box h2 {
+         font-size: 32px;
+         margin-bottom: 40px;
+         position: relative;
+      }
+
+      .quote-box h2::after {
+         content: '';
+         width: 75px;
+         height: 3px;
+         background: #dc2430;
+         position: absolute;
+         bottom: -10px;
+         left: 50%;
+         transform: translateX(-50%);
+         border-radius: 3px;
+      }
+
+      blockquote {
+         font-family: 'Playfair Display', serif;
+         font-size: 26px;
+         font-style: italic;
+         color: #333;
+         margin: 20px 0;
+         min-height: 100px;
+         /* Placeholder height */
+      }
+
+      blockquote::before {
+         content: '\201C';
+         font-size: 80px;
+         color: #dc2430;
+         position: relative;
+         top: 30px;
+         margin-right: 10px;
+         line-height: 0;
+      }
+
+      blockquote::after {
+         content: '\201D';
+         font-size: 80px;
+         color: #dc2430;
+         position: relative;
+         bottom: -50px;
+         margin-left: 10px;
+         line-height: 0;
+      }
+
+      .author {
+         display: block;
+         margin-top: 10px;
+         font-size: 18px;
+         font-weight: 500;
+         text-align: right;
+         color: #555;
+         margin-bottom: 40px;
+      }
+
+      .buttons {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-top: 20px;
+      }
+
+      .buttons button {
+         border: none;
+         outline: none;
+         padding: 15px 45px;
+         border-radius: 30px;
+         font-size: 16px;
+         cursor: pointer;
+         transition: 0.3s;
+      }
+
+      .buttons .new-quote {
+         background: #dc2430;
+         color: #fff;
+      }
+
+      .buttons .new-quote:hover {
+         background: #b51c26;
+      }
+
+      .buttons .tweet {
+         background: #1da1f2;
+         color: #fff;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+      }
+
+      .buttons .tweet:hover {
+         background: #0d8ddb;
+      }
+
+      .buttons .tweet img {
+         width: 20px;
+         filter: invert(1);
+      }
+   </style>
+</head>
+
+<body>
+   <div class="quote-box">
+      <h2>Quote of the Day</h2>
+      <blockquote id="quote">Loading...</blockquote>
+      <span id="author" class="author"></span>
+
+      <div class="buttons">
+         <button class="tweet" onclick="tweet()">
+            <!-- Simple twitter icon representation or img -->
+            Tweet
+         </button>
+         <button class="new-quote" onclick="getQuote()">New Quote</button>
+      </div>
+   </div>
+
+   <script>
+      const quote = document.getElementById("quote");
+      const author = document.getElementById("author");
+      const api_url = "https://api.quotable.io/random";
+
+      async function getQuote(url) {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Use the 'fetch' API to get data from 'api_url' (or the passed url).
+          2. Await the response and convert it to JSON.
+          3. Update the innerHTML of the 'quote' element with the content from the API (data.content).
+          4. Update the innerHTML of the 'author' element with the author (data.author).
+          
+          (Note: The API "https://api.quotable.io/random" is a popular choice, but ensure it's still active. 
+          If not, you can use a local array of quotes).
+         */
+
+         // Placeholder:
+         quote.innerHTML = "Success is not final; failure is not fatal: It is the courage to continue that counts.";
+         author.innerHTML = "Winston S. Churchill";
+      }
+
+      function tweet() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Create a url string for twitter intent: "https://twitter.com/intent/tweet?text="
+          2. Append the current quote and author to the url.
+          3. Use 'window.open' to open this URL in a new window/tab for the user to tweet.
+         */
+         window.open("https://twitter.com/intent/tweet?text=" + quote.innerHTML + " --- by " + author.innerHTML, "Tweet Window", "width=600,height=300");
+      }
+
+      // Initial call
+      getQuote(api_url);
+   </script>
+</body>
+
+</html>

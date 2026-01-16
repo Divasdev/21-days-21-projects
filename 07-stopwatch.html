@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Stopwatch</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #2c3e50;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .stopwatch {
+         width: 90%;
+         max-width: 600px;
+         background: linear-gradient(135deg, #1e3a5f, #1e5f58);
+         color: #fff;
+         text-align: center;
+         padding: 50px 0;
+         border-radius: 10px;
+         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .display {
+         font-size: 60px;
+         font-weight: 500;
+         margin-bottom: 30px;
+      }
+
+      .buttons {
+         display: flex;
+         justify-content: center;
+         gap: 20px;
+      }
+
+      .buttons img {
+         width: 50px;
+         height: 50px;
+         cursor: pointer;
+         filter: invert(1);
+         transition: transform 0.2s;
+      }
+
+      .buttons img:hover {
+         transform: scale(1.1);
+      }
+
+      /* Custom styles for buttons if images are not available or preferred as buttons */
+      .btn-control {
+         width: 60px;
+         height: 60px;
+         border-radius: 50%;
+         border: none;
+         background: rgba(255, 255, 255, 0.2);
+         color: white;
+         font-size: 20px;
+         cursor: pointer;
+         transition: background 0.3s;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      .btn-control:hover {
+         background: rgba(255, 255, 255, 0.4);
+      }
+   </style>
+</head>
+
+<body>
+   <div class="stopwatch">
+      <h1 class="display" id="timeDisplay">00:00:00</h1>
+      <div class="buttons">
+         <button class="btn-control" id="stopBtn" onclick="watchStop()">
+            &#9632; <!-- Square for Stop -->
+         </button>
+         <button class="btn-control" id="startBtn" onclick="watchStart()">
+            &#9658; <!-- Triangle for Start -->
+         </button>
+         <button class="btn-control" id="resetBtn" onclick="watchReset()">
+            &#8635; <!-- Circular arrow for Reset -->
+         </button>
+      </div>
+   </div>
+
+   <script>
+      let [seconds, minutes, hours] = [0, 0, 0];
+      let displayTime = document.getElementById("timeDisplay");
+      let timer = null;
+
+      function stopwatch() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Increment 'seconds'.
+          2. Logic for overflowing seconds to minutes (at 60), 
+             and minutes to hours (at 60).
+          3. Format the numbers to always be 2 digits (e.g., '0' + seconds if seconds < 10).
+          4. Update 'displayTime.innerHTML'.
+         */
+
+         seconds++;
+         if (seconds == 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes == 60) {
+               minutes = 0;
+               hours++;
+            }
+         }
+
+         // Format helper (placeholder logic)
+         let h = hours < 10 ? "0" + hours : hours;
+         let m = minutes < 10 ? "0" + minutes : minutes;
+         let s = seconds < 10 ? "0" + seconds : seconds;
+
+         displayTime.innerHTML = h + ":" + m + ":" + s;
+      }
+
+      function watchStart() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Clear any existing interval to prevent multiple intervals.
+          2. Start a new interval calling 'stopwatch' every 1000ms (1 second).
+         */
+         if (timer !== null) {
+            clearInterval(timer);
+         }
+         timer = setInterval(stopwatch, 1000);
+      }
+
+      function watchStop() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Clear the interval using 'clearInterval(timer)'.
+         */
+         clearInterval(timer);
+      }
+
+      function watchReset() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Clear the interval.
+          2. Reset [seconds, minutes, hours] to [0, 0, 0].
+          3. Update 'displayTime.innerHTML' to "00:00:00".
+         */
+         clearInterval(timer);
+         [seconds, minutes, hours] = [0, 0, 0];
+         displayTime.innerHTML = "00:00:00";
+      }
+   </script>
+</body>
+
+</html>

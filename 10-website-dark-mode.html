@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Website Dark Mode</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      :root {
+         --primary-color: #edf2fc;
+         --secondary-color: #212121;
+         --text-color: #333;
+         --bg-color: #fff;
+      }
+
+      .dark-theme {
+         --primary-color: #000106;
+         --secondary-color: #fff;
+         --text-color: #e3e3e3;
+         --bg-color: #2b2b2b;
+      }
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: var(--primary-color);
+         transition: background 0.3s;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .container {
+         width: 100%;
+         max-width: 800px;
+         background: var(--bg-color);
+         padding: 50px;
+         border-radius: 10px;
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+         transition: background 0.3s;
+      }
+
+      .container h1 {
+         color: var(--text-color);
+         margin-bottom: 20px;
+      }
+
+      .container p {
+         color: var(--text-color);
+         line-height: 1.6;
+         margin-bottom: 30px;
+      }
+
+      .icon {
+         width: 30px;
+         cursor: pointer;
+         position: absolute;
+         top: 20px;
+         right: 20px;
+      }
+   </style>
+</head>
+
+<body>
+   <img src="https://cdn-icons-png.flaticon.com/512/1829/1829186.png" id="icon" class="icon">
+
+   <div class="container">
+      <h1>Website Dark Mode</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+      <p>Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+         officia deserunt mollit anim id est laborum.</p>
+   </div>
+
+   <script>
+      let icon = document.getElementById("icon");
+      let body = document.body;
+
+      icon.onclick = function () {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Toggle the 'dark-theme' class on 'document.body'.
+          2. Check if the body contains 'dark-theme'.
+          3. If yes:
+             - Change the icon src to a "sun" icon (for light mode toggle).
+             - Optional: Save preference to localStorage.
+          4. If no:
+             - Change the icon src to a "moon" icon (for dark mode toggle).
+             - Optional: Save preference to localStorage.
+         */
+
+         body.classList.toggle("dark-theme");
+         if (body.classList.contains("dark-theme")) {
+            icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png"; // Sun icon
+         } else {
+            icon.src = "https://cdn-icons-png.flaticon.com/512/1829/1829186.png"; // Moon icon
+         }
+      }
+   </script>
+</body>
+
+</html>

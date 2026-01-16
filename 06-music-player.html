@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Music Player</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #FFE0E5;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .container {
+         width: 100%;
+         max-width: 400px;
+         background: #fff;
+         padding: 30px;
+         border-radius: 20px;
+         box-shadow: 0 20px 40px rgba(255, 12, 48, 0.1);
+         text-align: center;
+      }
+
+      .song-img {
+         width: 180px;
+         height: 180px;
+         border-radius: 50%;
+         object-fit: cover;
+         margin: 20px auto;
+         box-shadow: 0 10px 40px rgba(255, 12, 48, 0.4);
+      }
+
+      .container h1 {
+         font-size: 24px;
+         font-weight: 600;
+         margin-bottom: 5px;
+         color: #333;
+      }
+
+      .container p {
+         font-size: 14px;
+         color: #777;
+         margin-bottom: 30px;
+      }
+
+      #progress {
+         -webkit-appearance: none;
+         width: 100%;
+         height: 6px;
+         background: #f53192;
+         border-radius: 4px;
+         cursor: pointer;
+         margin: 40px 0;
+      }
+
+      #progress::-webkit-slider-thumb {
+         -webkit-appearance: none;
+         background: #f53192;
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         border: 8px solid #fff;
+         box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
+      }
+
+      .controls {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         gap: 20px;
+      }
+
+      .controls div {
+         width: 60px;
+         height: 60px;
+         background: #fff;
+         color: #f53192;
+         display: inline-flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 50%;
+         box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22);
+         cursor: pointer;
+         font-size: 20px;
+         transition: all 0.2s;
+      }
+
+      .controls div:hover {
+         transform: scale(1.1);
+      }
+
+      .controls div:nth-child(2) {
+         transform: scale(1.2);
+         background: #f53192;
+         color: #fff;
+      }
+
+      .controls div:nth-child(2):hover {
+         transform: scale(1.3);
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <!-- Placeholder Image -->
+      <img
+         src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+         class="song-img" id="song-img">
+
+      <h1 id="title">Despacito</h1>
+      <p id="artist">Luis Fonsi Ft. Puerto Rico</p>
+
+      <audio id="song">
+         <!-- Source needs to be a valid MP3 file or URL -->
+         <source src="song-placeholder.mp3" type="audio/mpeg">
+      </audio>
+
+      <input type="range" value="0" id="progress">
+
+      <div class="controls">
+         <div onclick="playPause()"><i class="fa-solid fa-backward"></i></div>
+         <div onclick="playPause()" id="ctrlIcon"><i class="fa-solid fa-play"></i></div>
+         <div onclick="playPause()"><i class="fa-solid fa-forward"></i></div>
+      </div>
+   </div>
+
+   <script>
+      let progress = document.getElementById("progress");
+      let song = document.getElementById("song");
+      let ctrlIcon = document.getElementById("ctrlIcon");
+
+      /* 
+        ---------------------------------------------------
+        TODO: JAVASCRIPT LOGIC
+        ---------------------------------------------------
+        
+        1. Wait for song metadata to load:
+           - song.onloadedmetadata = function() { ... }
+           - Set 'progress.max' to 'song.duration'.
+           - Set 'progress.value' to 'song.currentTime'.
+           
+        2. Play/Pause Functionality (playPause()):
+           - If the 'ctrlIcon' shows a "pause" icon (or song is playing):
+             - song.pause()
+             - Change 'ctrlIcon' to "play" icon (<i class="fa-solid fa-play"></i>).
+           - Else (song is paused):
+             - song.play()
+             - Change 'ctrlIcon' to "pause" icon (<i class="fa-solid fa-pause"></i>).
+             
+        3. Update Progress Bar automatically:
+           - Use 'setInterval' to update 'progress.value = song.currentTime' every 500ms.
+           - Or use the 'ontimeupdate' event on the audio element.
+           
+        4. Seeking functionality:
+           - Add an 'onchange' event to the progress bar:
+             - progress.onchange = function(){ song.currentTime = progress.value; song.play(); ... }
+      */
+
+      function playPause() {
+         // Placeholder: toggles icon visually for now
+         let icon = ctrlIcon.querySelector('i');
+         if (icon.classList.contains('fa-pause')) {
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+            // song.pause();
+         } else {
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+            // song.play();
+         }
+      }
+   </script>
+</body>
+
+</html>
