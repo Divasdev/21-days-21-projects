@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>JS Concepts for React</title>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #f4f4f4;
+         color: #333;
+         line-height: 1.6;
+      }
+
+      header {
+         background: #61dafb;
+         color: #20232a;
+         padding: 20px;
+         text-align: center;
+      }
+
+      header h1 {
+         font-weight: 600;
+      }
+
+      .container {
+         max-width: 900px;
+         margin: 40px auto;
+         padding: 0 20px;
+      }
+
+      .concept-card {
+         background: #fff;
+         margin-bottom: 30px;
+         padding: 30px;
+         border-radius: 8px;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .concept-card h2 {
+         font-size: 24px;
+         margin-bottom: 10px;
+         color: #20232a;
+      }
+
+      .concept-card p {
+         margin-bottom: 15px;
+         color: #555;
+      }
+
+      pre {
+         background: #282c34;
+         color: #abb2bf;
+         padding: 20px;
+         border-radius: 6px;
+         overflow-x: auto;
+         font-family: 'Fira Code', monospace;
+         font-size: 14px;
+      }
+
+      code {
+         font-family: 'Fira Code', monospace;
+      }
+
+      .tag {
+         display: inline-block;
+         background: #e1f5fe;
+         color: #0288d1;
+         padding: 2px 8px;
+         border-radius: 4px;
+         font-size: 12px;
+         margin-bottom: 10px;
+         font-weight: 500;
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <h1>Essential JS Concepts for React</h1>
+      <p>A quick revision guide for Project 19-20</p>
+   </header>
+
+   <div class="container">
+      <!-- Arrow Functions -->
+      <div class="concept-card">
+         <span class="tag">ES6</span>
+         <h2>1. Arrow Functions</h2>
+         <p>A shorter syntax for writing function expressions. They don't have their own 'this' binding.</p>
+         <pre><code>// Traditional
+function greet(name) {
+  return "Hello " + name;
+}
+
+// Arrow Function
+const greet = (name) => `Hello ${name}`;</code></pre>
+      </div>
+
+      <!-- Destructuring -->
+      <div class="concept-card">
+         <span class="tag">ES6</span>
+         <h2>2. Destructuring</h2>
+         <p>Extract values from arrays or properties from objects into distinct variables.</p>
+         <pre><code>// Object
+const user = { name: 'Alex', age: 24 };
+const { name, age } = user;
+
+// Array
+const colors = ['red', 'green'];
+const [primary, secondary] = colors;</code></pre>
+      </div>
+
+      <!-- Map -->
+      <div class="concept-card">
+         <span class="tag">Array Methods</span>
+         <h2>3. Map()</h2>
+         <p>Creates a new array by applying a function to every element in an existing array. Crucial for rendering
+            lists in React.</p>
+         <pre><code>const nums = [1, 2, 3];
+const doubled = nums.map((num) => num * 2);
+// [2, 4, 6]</code></pre>
+      </div>
+
+      <!-- Filter -->
+      <div class="concept-card">
+         <span class="tag">Array Methods</span>
+         <h2>4. Filter()</h2>
+         <p>Creates a new array with all elements that pass the test implemented by the provided function.</p>
+         <pre><code>const ages = [15, 22, 10, 30];
+const adults = ages.filter((age) => age >= 18);
+// [22, 30]</code></pre>
+      </div>
+
+      <!-- Spread Operator -->
+      <div class="concept-card">
+         <span class="tag">ES6</span>
+         <h2>5. Spread Operator (...)</h2>
+         <p>Expands an iterable (like an array) into more elements. Useful for copying arrays/objects or combining them.
+         </p>
+         <pre><code>const oldArr = [1, 2];
+const newArr = [...oldArr, 3, 4];
+// [1, 2, 3, 4]
+
+const user = { name: 'John' };
+const updatedUser = { ...user, age: 30 };</code></pre>
+      </div>
+
+      <!-- Modules -->
+      <div class="concept-card">
+         <span class="tag">ES6</span>
+         <h2>6. Modules (Import/Export)</h2>
+         <p>Breaking code into separate files.</p>
+         <pre><code>// file1.js
+export const name = "React";
+
+// file2.js
+import { name } from './file1.js';</code></pre>
+      </div>
+   </div>
+</body>
+
+</html>

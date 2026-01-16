@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Image Gallery</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #191919;
+         width: 100%;
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         overflow-x: hidden;
+      }
+
+      .gallery-wrap {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 10% auto;
+      }
+
+      #backBtn,
+      #nextBtn {
+         width: 50px;
+         cursor: pointer;
+         margin: 40px;
+         filter: invert(1);
+      }
+
+      .gallery {
+         width: 900px;
+         display: flex;
+         overflow-x: scroll;
+         scroll-behavior: smooth;
+      }
+
+      .gallery::-webkit-scrollbar {
+         display: none;
+      }
+
+      .gallery div {
+         width: 100%;
+         display: grid;
+         grid-template-columns: auto auto auto;
+         grid-gap: 20px;
+         padding: 10px;
+         flex: none;
+         /* Do not shrink */
+      }
+
+      .gallery div img {
+         width: 100%;
+         filter: grayscale(100%);
+         transition: transform 0.5s, filter 0.5s;
+         cursor: pointer;
+         border-radius: 5px;
+      }
+
+      .gallery div img:hover {
+         filter: grayscale(0);
+         cursor: pointer;
+         transform: scale(1.1);
+      }
+   </style>
+</head>
+
+<body>
+   <div class="gallery-wrap">
+      <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" id="backBtn">
+
+      <div class="gallery">
+         <div>
+            <span><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300&q=80"></span>
+            <span><img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=300&q=80"></span>
+            <span><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=300&q=80"></span>
+         </div>
+         <div>
+            <span><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80"></span>
+            <span><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&q=80"></span>
+            <span><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=300&q=80"></span>
+         </div>
+      </div>
+
+      <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" id="nextBtn">
+   </div>
+
+   <script>
+      let scrollContainer = document.querySelector(".gallery");
+      let backBtn = document.getElementById("backBtn");
+      let nextBtn = document.getElementById("nextBtn");
+
+      /* 
+           --------------------------------------------------------
+           TODO: JAVASCRIPT LOGIC
+           --------------------------------------------------------
+           
+           1. Add 'wheel' event listener to 'scrollContainer':
+              - evt.preventDefault();
+              - scrollContainer.scrollLeft += evt.deltaY;
+              - scroll-behavior: auto;
+              
+           2. Button Click (Next):
+              - scrollContainer.style.scrollBehavior = "smooth";
+              - scrollContainer.scrollLeft += 900;
+              
+           3. Button Click (Back):
+              - scrollContainer.style.scrollBehavior = "smooth";
+              - scrollContainer.scrollLeft -= 900;
+      */
+
+      scrollContainer.addEventListener("wheel", (evt) => {
+         evt.preventDefault();
+         scrollContainer.scrollLeft += evt.deltaY;
+         scrollContainer.style.scrollBehavior = "auto";
+      });
+
+      nextBtn.addEventListener("click", () => {
+         // Placeholder action
+      });
+
+      backBtn.addEventListener("click", () => {
+         // Placeholder action
+      });
+   </script>
+</body>
+
+</html>

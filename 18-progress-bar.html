@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Circular Progress Bar</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #e0e0e0;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .container {
+         position: relative;
+         width: 300px;
+         height: 400px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+      }
+
+      .circular-progress {
+         position: relative;
+         height: 250px;
+         width: 250px;
+         border-radius: 50%;
+         background: conic-gradient(#7d2ae8 0deg, #ededed 0deg);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      .circular-progress::before {
+         content: "";
+         position: absolute;
+         height: 210px;
+         width: 210px;
+         border-radius: 50%;
+         background-color: #e0e0e0;
+         /* Matches body bg */
+      }
+
+      .value-container {
+         position: relative;
+         font-size: 50px;
+         color: #7d2ae8;
+         font-weight: 600;
+      }
+
+      h2 {
+         text-align: center;
+         margin-bottom: 40px;
+         color: #333;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <h2>Skils Proficiency</h2>
+      <div class="circular-progress">
+         <span class="value-container">0%</span>
+      </div>
+   </div>
+
+   <script>
+      let progressBar = document.querySelector(".circular-progress");
+      let valueContainer = document.querySelector(".value-container");
+
+      let progressValue = 0;
+      let progressEndValue = 65; // Target percentage
+      let speed = 20;
+
+      let progress = setInterval(() => {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Increment 'progressValue'.
+          2. Update 'valueContainer.textContent' with `${progressValue}%`.
+          3. Update 'progressBar.style.background':
+             `conic-gradient(#7d2ae8 ${progressValue * 3.6}deg, #ededed 0deg)`
+          4. Check if 'progressValue' == 'progressEndValue'.
+          5. If yes, clearInterval(progress).
+         */
+
+         progressValue++;
+         valueContainer.textContent = `${progressValue}%`;
+         progressBar.style.background = `conic-gradient(
+                #7d2ae8 ${progressValue * 3.6}deg,
+                #ededed 0deg
+            )`;
+
+         if (progressValue == progressEndValue) {
+            clearInterval(progress);
+         }
+      }, speed);
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Image Background Change</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      .container {
+         width: 100%;
+         height: 100vh;
+         background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop');
+         background-size: cover;
+         background-position: center;
+         position: relative;
+         transition: background 0.5s ease;
+         display: flex;
+         align-items: flex-end;
+         justify-content: center;
+         padding-bottom: 50px;
+      }
+
+      .content {
+         text-align: center;
+         color: #fff;
+         background: rgba(0, 0, 0, 0.4);
+         padding: 20px;
+         border-radius: 10px;
+         margin-bottom: 20px;
+      }
+
+      .content h1 {
+         font-size: 60px;
+         font-weight: 600;
+      }
+
+      .content p {
+         font-size: 18px;
+         margin: 10px 0 20px;
+      }
+
+      .thumbs {
+         display: flex;
+         gap: 20px;
+         background: rgba(255, 255, 255, 0.2);
+         padding: 10px;
+         border-radius: 30px;
+         backdrop-filter: blur(5px);
+      }
+
+      .thumb {
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         overflow: hidden;
+         cursor: pointer;
+         border: 2px solid transparent;
+         transition: transform 0.2s;
+      }
+
+      .thumb:hover {
+         transform: scale(1.1);
+         border-color: #fff;
+      }
+
+      .thumb img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container" id="bg-container">
+
+      <div style="position: absolute; top: 40%; text-align: center; width: 100%;">
+         <div class="content">
+            <h1>Explore The World</h1>
+            <p>Click the bubbles below to change the destination.</p>
+         </div>
+      </div>
+
+      <div class="thumbs">
+         <!-- Thumb 1 -->
+         <div class="thumb"
+            onclick="changeBg('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=200&auto=format&fit=crop">
+         </div>
+         <!-- Thumb 2 -->
+         <div class="thumb"
+            onclick="changeBg('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=200&auto=format&fit=crop">
+         </div>
+         <!-- Thumb 3 -->
+         <div class="thumb"
+            onclick="changeBg('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=200&auto=format&fit=crop">
+         </div>
+         <!-- Thumb 4 -->
+         <div class="thumb"
+            onclick="changeBg('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1000&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=200&auto=format&fit=crop">
+         </div>
+      </div>
+   </div>
+
+   <script>
+      function changeBg(imageUrl) {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Select the container element (id='bg-container').
+          2. Set its background-image style property to the passed 'imageUrl'.
+         */
+         document.getElementById('bg-container').style.backgroundImage = "url('" + imageUrl + "')";
+      }
+   </script>
+</body>
+
+</html>

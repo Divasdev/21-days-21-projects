@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Email Subscription</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #1c1c1c;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .hero {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      .container {
+         width: 400px;
+         text-align: center;
+         padding: 40px;
+         background: rgba(255, 255, 255, 0.1);
+         border-radius: 10px;
+         color: #fff;
+      }
+
+      .container h3 {
+         font-size: 30px;
+         margin-bottom: 20px;
+         color: #fff;
+      }
+
+      .container p {
+         color: #d1d1d1;
+      }
+
+      form {
+         background: #fff;
+         display: flex;
+         margin-top: 20px;
+         border-radius: 5px;
+         overflow: hidden;
+      }
+
+      form input {
+         flex: 1;
+         border: 0;
+         outline: none;
+         padding: 15px 20px;
+      }
+
+      form button {
+         background: #ff2c74;
+         border: 0;
+         outline: none;
+         color: #fff;
+         padding: 15px 30px;
+         cursor: pointer;
+         font-weight: 600;
+      }
+
+      #msg {
+         margin-top: 20px;
+         display: block;
+         color: #61b752;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="hero">
+      <div class="container">
+         <h3>Subscribe Now</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod.</p>
+
+         <form name="submit-to-google-sheet">
+            <input type="email" name="Email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+         </form>
+         <span id="msg"></span>
+      </div>
+   </div>
+
+   <script>
+      const scriptURL = '<YOUR-GOOGLE-SCRIPT-URL>';
+      const form = document.forms['submit-to-google-sheet'];
+      const msg = document.getElementById("msg");
+
+      form.addEventListener('submit', e => {
+         e.preventDefault();
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Use fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          2. On success (.then):
+             - msg.innerHTML = "Thank You For Subscribing!";
+             - setTimeout(() => { msg.innerHTML = "" }, 5000);
+             - form.reset();
+          3. On error (.catch):
+             - Console.error('Error!', error.message);
+             
+          Note: You need to set up a Google Sheet script for this to actually save data.
+         */
+
+         // Simulation of success for UI demo:
+         msg.innerHTML = "Thank You For Subscribing!";
+         setTimeout(function () {
+            msg.innerHTML = "";
+         }, 5000);
+         form.reset();
+      });
+   </script>
+</body>
+
+</html>

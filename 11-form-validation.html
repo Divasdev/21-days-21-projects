@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Form Validation</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background: #fff;
+         color: #333;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 100vh;
+      }
+
+      .container {
+         width: 100%;
+         max-width: 500px;
+         padding: 20px;
+      }
+
+      .container form {
+         width: 100%;
+         border: 1px solid #ccc;
+         padding: 30px;
+         background: #fff;
+         border-radius: 5px;
+      }
+
+      .container h3 {
+         color: #ff004f;
+         margin-bottom: 20px;
+      }
+
+      .input-group {
+         margin-bottom: 30px;
+         position: relative;
+      }
+
+      .input-group label {
+         display: block;
+         margin-bottom: 5px;
+         font-size: 14px;
+         color: #666;
+      }
+
+      .input-group input,
+      .input-group textarea {
+         width: 100%;
+         padding: 10px;
+         outline: 0;
+         border: 1px solid #ccc;
+         color: #333;
+         font-size: 15px;
+         border-radius: 4px;
+      }
+
+      .input-group span {
+         position: absolute;
+         bottom: -22px;
+         left: 0;
+         color: red;
+         font-size: 12px;
+      }
+
+      /* Icon inside input logic handling can be done via relative positioning if needed */
+
+      .input-group i {
+         position: absolute;
+         right: 10px;
+         top: 38px;
+         color: seagreen;
+         visibility: hidden;
+         /* Show on valid */
+      }
+
+      button {
+         width: 100%;
+         padding: 10px 0;
+         background: #ff004f;
+         color: #fff;
+         border: 0;
+         outline: 0;
+         font-size: 16px;
+         font-weight: 500;
+         cursor: pointer;
+         border-radius: 4px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <form onsubmit="return validateForm()">
+         <h3>Get in touch</h3>
+
+         <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name" id="contact-name" onkeyup="validateName()">
+            <span id="name-error"></span>
+         </div>
+
+         <div class="input-group">
+            <label>Phone No.</label>
+            <input type="tel" placeholder="123 456 7890" id="contact-phone" onkeyup="validatePhone()">
+            <span id="phone-error"></span>
+         </div>
+
+         <div class="input-group">
+            <label>Email Id</label>
+            <input type="email" placeholder="Enter Email" id="contact-email" onkeyup="validateEmail()">
+            <span id="email-error"></span>
+         </div>
+
+         <div class="input-group">
+            <label>Your Message</label>
+            <textarea rows="5" placeholder="Enter your message" id="contact-message"
+               onkeyup="validateMessage()"></textarea>
+            <span id="message-error"></span>
+         </div>
+
+         <button type="submit">Submit</button>
+         <span id="submit-error" style="display:block; margin-top: 10px; text-align: center;"></span>
+      </form>
+   </div>
+
+   <script>
+      var nameError = document.getElementById('name-error');
+      var phoneError = document.getElementById('phone-error');
+      var emailError = document.getElementById('email-error');
+      var messageError = document.getElementById('message-error');
+      var submitError = document.getElementById('submit-error');
+
+      function validateName() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Get value of 'contact-name'.
+          2. Check if length is 0 -> show "Name is required".
+          3. Check if it matches regex /^[A-Za-z]+ [A-Za-z]+$/ (Full Name) -> if not, show "Write full name".
+          4. If valid, set innerHTML to '<i class="fa-solid fa-circle-check"></i>', and return true.
+          5. Return false if invalid.
+         */
+         return true; // placeholder
+      }
+
+      function validatePhone() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Get value of 'contact-phone'.
+          2. Check length == 0 -> "Phone no is required".
+          3. Check length is not 10 -> "Phone no should be 10 digits".
+          4. Check matches /^[0-9]{10}$/ -> "Only digits please".
+          5. If valid, show success icon, return true.
+         */
+         return true;
+      }
+
+      function validateEmail() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Get value of 'contact-email'.
+          2. Check length == 0.
+          3. Check regex match for valid email.
+          4. If invalid, show "Email Invalid".
+          5. If valid, show success icon, return true.
+         */
+         return true;
+      }
+
+      function validateMessage() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Get 'contact-message'.
+          2. Check minimum length (e.g., 30 chars).
+          3. Update error span with "x more characters required".
+          4. If valid, show success, return true.
+         */
+         return true;
+      }
+
+      function validateForm() {
+         /* 
+          --------------------------------------------------------
+          TODO: JAVASCRIPT LOGIC
+          --------------------------------------------------------
+          
+          1. Call all validate functions: !validateName() || !validatePhone() ...
+          2. If any return false:
+             - Show "Please fix error to submit" in 'submit-error'.
+             - Hide the error after 3 seconds.
+             - Return false (to prevent submission).
+          3. If all true, return true.
+         */
+         return false; // preventing submit for demo
+      }
+   </script>
+</body>
+
+</html>
