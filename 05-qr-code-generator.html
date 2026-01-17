@@ -137,27 +137,10 @@
       let qrText = document.getElementById("qrText");
 
       function generateQR() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Check if 'qrText.value' is not empty.
-          2. If it has a value:
-             - Use a free public QR code API, such as:
-               "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
-             - Set the 'src' of 'qrImage' to this URL.
-             - Add the class "show-img" to 'imgBox' to make it visible.
-             
-          3. If the input is empty:
-             - Add an 'error' class to the input field briefly to show a shake animation.
-             - Remove the 'error' class after a short timeout (e.g., 1000ms).
-         */
-
-         // Placeholder checking
+         
          if (qrText.value.length > 0) {
-            // Example of setting the image src (you can use this URL structure)
-            // qrImage.src = ... 
+
+            qrImage.src ="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
             imgBox.classList.add("show-img");
          } else {
             qrText.classList.add('error');
@@ -166,6 +149,8 @@
             }, 1000);
          }
       }
+
+
    </script>
 </body>
 
