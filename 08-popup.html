@@ -105,6 +105,9 @@
 <body>
    <div class="container">
       <button type="submit" class="btn" onclick="openPopup()">Submit</button>
+      <button type="reset" class="btn" onclick="openPopup()">Reset</button>
+       <button type="start" class="btn" onclick="openPopup()">Start</button>
+
 
       <div class="popup" id="popup">
          <div class="popup-icon">&#10003;</div> <!-- Checkmark icon -->
@@ -118,26 +121,17 @@
       let popup = document.getElementById("popup");
 
       function openPopup() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Add the class 'open-popup' to the 'popup' element.
-         */
-         popup.classList.add("open-popup");
+ 
+       popup.classList.add("open-popup");
+
       }
 
       function closePopup() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Remove the class 'open-popup' from the 'popup' element.
-         */
-         popup.classList.remove("open-popup");
+      
+       popup.classList.remove("open-popup");
       }
+
+  
    </script>
 </body>
 
