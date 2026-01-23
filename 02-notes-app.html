@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,107 +8,131 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-body {
-    background: #f0f0f0;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-.container {
-    width: 100%;
-    max-width: 800px;
-}
-h1 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-h1 img {
-    width: 40px;
-}
-.btn {
-    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-    transition: transform 0.2s;
-}
-.btn:hover {
-    transform: scale(1.05);
-}
-.btn img {
-    width: 20px;
-    filter: invert(1);
-}
-.notes-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-.input-box {
-    position: relative;
-    width: 100%;
-    min-height: 150px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    outline: none;
-}
-.input-box img {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 20px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-}
-.input-box img:hover {
-    opacity: 1;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
+    body {
+        background: #f0f0f0;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 800px;
+    }
+
+    h1 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    h1 img {
+        width: 40px;
+    }
+
+    .btn {
+        background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        transition: transform 0.2s;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn img {
+        width: 20px;
+        filter: invert(1);
+    }
+
+    .notes-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .input-box {
+        position: relative;
+        width: 100%;
+        min-height: 150px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        outline: none;
+    }
+
+    .input-box img {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: 20px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+    }
+
+    .input-box img:hover {
+        opacity: 1;
+    }
 </style>
+
 <body>
     <div class="container">
         <h1><img src="post-it.png" alt="notes">Notes</h1>
         <button class="btn" id="create-btn">
             <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="edit"> Create Note
         </button>
-        
+
         <div class="notes-container">
             <!-- p tag with contenteditable can be used for notes -->
-            <!-- <p class="input-box" contenteditable="true">Note content <img src="delete.png"></p> --> 
+            <!-- <p class="input-box" contenteditable="true">Note content <img src="delete.png" class="del-btn"></p>  -->
         </div>
     </div>
     <script>
+        const notesContainer = document.querySelector(".notes-container");
+        const createBtn = document.querySelector(".btn");
+
+        createBtn.addEventListener("click", () => {
+
+            const note = document.querySelector("p");
+
+            note.classList.add("input-box");
+            note.setAttribute("contenditable", "true");
+            const image = document.querySelector("img");
+            img.src = "delete.png";
+
+
+            notesContainer.appendChild(note);
+
+        });
+
+
+        function deleteBtn() {
 
 
 
-
-     // Select the necessary elements
-const notesContainer = document.querySelector(".notes-container");
-const createBtn = document.querySelector(".btn");
-/* 
-  ========================================
-  TODO: JAVASCRIPT LOGIC
-  ========================================
+        };
+/*
   
   Write the JavaScript code to make the Notes App interactive.
   
@@ -122,11 +147,38 @@ const createBtn = document.querySelector(".btn");
   3. (Bonus) Save data to LocalStorage using 'localStorage.setItem' and 'localStorage.getItem' 
      so that notes are saved even after refreshing the page.
   4. (Bonus) Handle 'Enter' key to insert a line break properly if needed.
-*/
+
 // Example helper function to get you started (optional usage):
 function showNotes() {
     // Load notes from localStorage if you implement that
 }
+
+
+
+// TODO: Add click event listener to "Create Note" button
+// - On click, create a new <p> element
+// - Give it class "input-box"
+// - Set contenteditable="true"
+// - Create an <img> element for delete icon
+// - Append delete icon inside the note
+// - Append the note to notesContainer
+
+// TODO: Implement delete functionality for notes
+// - Detect click on delete icon inside a note
+// - Remove only that specific note from the DOM
+
+// TODO (Bonus): Persist notes using LocalStorage
+// - Save all notes to localStorage whenever notes change
+// - Load saved notes on page load and render them
+
+// TODO (Bonus): Handle Enter key behavior inside notes
+// - Prevent breaking the layout on Enter
+// - Insert line break properly inside the note
+
+// TODO: Create showNotes() function
+// - Read from localStorage
+// - Reconstruct and display notes in UI
     </script>
 </body>
+
 </html>
