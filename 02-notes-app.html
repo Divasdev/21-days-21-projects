@@ -111,11 +111,11 @@
     <script>
         const notesContainer = document.querySelector(".notes-container");
         const createBtn = document.querySelector(".btn");
-
+          
         createBtn.addEventListener("click", () => {
 
-            const note = document.querySelector("p");
 
+            const note = document.querySelector("p");
             note.classList.add("input-box");
             note.setAttribute("contenditable", "true");
             const image = document.querySelector("img");
@@ -126,58 +126,82 @@
 
         });
 
+        
+        const deleteBtn=document.querySelectorAll(".del-btn");
+          
+        deleteBtn.addEventListener("click",(e)=>{
+            if(e.target.classList.contains(".del-btn")){
+                e.target.parentNode.remove();
+            }
+        });
 
-        function deleteBtn() {
 
 
+        function saveNotes(){
+            const notes=document.querySelectorAll(".input-box");
+            const data=[];
 
-        };
-/*
+
+            notes.forEach(note =>{
+
+                data.push(note.innerText.trim());
+            });
+             localStorage.setItem('userNotes',JSON.stringify(data));
+        }
+
+
+        function showNotes(){
+
+            const data=JSON.parse(localStorage.getItem("userNotes"))||[];
+
+            data.forEach(text=>{
+                const note =document.createElement("p");
+        note.classList.add("input-box");
+            note.setAttribute("contenditable", "true");
+
+            note.innerHTML=text;
+
+
+            const img=document.createElement("img");
+
+            img.src="delete.png";
+
+            img.classList.add("del-btn");
+
+
+            not.appendChild(img);
+
+            notesContainer.appendChild(note);
+
+            });
+        }
+
+
+        showNotes();
+      
+
+      notesContainer.addEventListener('keydown',(e)=>{
+
+   
+            
+
+            if(e.key=="Enter"){
+
+                e.preventDefault();
+                document.execCommand("insertLineBreak");
+
+                saveNotes(); 
+
+            }
+
+        })
+   
   
-  Write the JavaScript code to make the Notes App interactive.
-  
-  Tasks:
-  1. Add an event listener to the "Create Note" button.
-     - When clicked, it should create a new note element.
-     - The note element can be a <p> tag with class "input-box" and contenteditable="true".
-     - Inside the note, append an <img> element for the delete button.
-     - Append the new note to the 'notesContainer'.
-  2. Add functionality to delete a note.
-     - When the delete image/icon inside a note is clicked, remove that specific note from the container.
-  3. (Bonus) Save data to LocalStorage using 'localStorage.setItem' and 'localStorage.getItem' 
-     so that notes are saved even after refreshing the page.
-  4. (Bonus) Handle 'Enter' key to insert a line break properly if needed.
+       
 
-// Example helper function to get you started (optional usage):
-function showNotes() {
-    // Load notes from localStorage if you implement that
-}
+        
+     
 
-
-
-// TODO: Add click event listener to "Create Note" button
-// - On click, create a new <p> element
-// - Give it class "input-box"
-// - Set contenteditable="true"
-// - Create an <img> element for delete icon
-// - Append delete icon inside the note
-// - Append the note to notesContainer
-
-// TODO: Implement delete functionality for notes
-// - Detect click on delete icon inside a note
-// - Remove only that specific note from the DOM
-
-// TODO (Bonus): Persist notes using LocalStorage
-// - Save all notes to localStorage whenever notes change
-// - Load saved notes on page load and render them
-
-// TODO (Bonus): Handle Enter key behavior inside notes
-// - Prevent breaking the layout on Enter
-// - Insert line break properly inside the note
-
-// TODO: Create showNotes() function
-// - Read from localStorage
-// - Reconstruct and display notes in UI
     </script>
 </body>
 
