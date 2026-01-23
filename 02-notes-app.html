@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css" />
 </head>
 <style>
     * {
@@ -113,29 +113,18 @@
         const createBtn = document.querySelector(".btn");
           
         createBtn.addEventListener("click", () => {
-
-
-            const note = document.querySelector("p");
+            const note = document.createElement("p");
             note.classList.add("input-box");
-            note.setAttribute("contenditable", "true");
-            const image = document.querySelector("img");
+            note.setAttribute("contenteditable", "true");
+
+            const img = document.createElement("img");
             img.src = "delete.png";
+            img.classList.add("del-btn");
 
-
+            note.appendChild(img);
             notesContainer.appendChild(note);
-
+            saveNotes();
         });
-
-        
-        const deleteBtn=document.querySelectorAll(".del-btn");
-          
-        deleteBtn.addEventListener("click",(e)=>{
-            if(e.target.classList.contains(".del-btn")){
-                e.target.parentNode.remove();
-            }
-        });
-
-
 
         function saveNotes(){
             const notes=document.querySelectorAll(".input-box");
@@ -156,35 +145,38 @@
 
             data.forEach(text=>{
                 const note =document.createElement("p");
-        note.classList.add("input-box");
-            note.setAttribute("contenditable", "true");
+                note.classList.add("input-box");
+                note.setAttribute("contenteditable", "true");
 
-            note.innerHTML=text;
-
-
-            const img=document.createElement("img");
-
-            img.src="delete.png";
-
-            img.classList.add("del-btn");
+                note.innerText = text;
 
 
-            not.appendChild(img);
+                const img=document.createElement("img");
 
-            notesContainer.appendChild(note);
+                img.src="delete.png";
+
+                img.classList.add("del-btn");
+
+
+                note.appendChild(img);
+
+                notesContainer.appendChild(note);
 
             });
         }
 
 
         showNotes();
+
+        notesContainer.addEventListener("click", (e) => {
+            if (e.target.classList.contains("del-btn")) {
+                e.target.parentElement.remove();
+                saveNotes();
+            }
+        });
       
 
       notesContainer.addEventListener('keydown',(e)=>{
-
-   
-            
-
             if(e.key=="Enter"){
 
                 e.preventDefault();
@@ -193,15 +185,8 @@
                 saveNotes(); 
 
             }
-
         })
    
-  
-       
-
-        
-     
-
     </script>
 </body>
 
