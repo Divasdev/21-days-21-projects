@@ -137,39 +137,37 @@
          console.log(`month Date= ${monthDiff}`);
 
 
-         if(monthDiff<0 || monthDiff==0 && todayDate<birthDate){
-             newYeardiff= yearDiff+1;
+         if (monthDiff < 0 || (monthDiff === 0 && todayDate.getDate() < new Date(birthDate).getDate())) {
+             newYeardiff= yearDiff-1;
+             monthDiff=monthDiff+12;
          
          console.log(newYeardiff);
          }
+         
+        let d1= new Date(birthDate).getDate(), m1= new Date(birthDate).getMonth() +1, y1=  new Date(birthDate).getFullYear();
+
+        let d2 = todayDate.getDate(), m2 = todayDate.getMonth() + 1, y2 = todayDate.getFullYear();
+        if(d2>=d1){
+         days=d2-d1;
+
+        } else{
+           const daysInPrevMonth = new Date(y2, m2 - 1, 0).getDate();
+           days=(daysInPrevMonth+d2) -d1;
+           monthDiff--;
+        }
 
 
 
 
-
+         
          /* 
-          4. Calculate the difference in Years:
-             - yearDiff = today.year - birthDate.year
-             
-          5. Calculate the difference in Months:
-             - monthDiff = today.month - birthDate.month
-             - If monthDiff is less than 0, or (monthDiff is 0 and today.date < birthDate.date),
-               then decrement the age (yearDiff) by 1.
-               
-          6. Calculate Days similarly (getting precise days can be tricky with leap years, 
-             but a simple approximation or standard date math is usually fine for this project).
-             - A more robust way:
-               let d1 = birthDate.getDate(), m1 = birthDate.getMonth() + 1, y1 = birthDate.getFullYear();
-               let d2 = today.getDate(), m2 = today.getMonth() + 1, y2 = today.getFullYear();
-               
-               getDaysInMonth(year, month) helper function might be needed.
                
           7. Display the result in the 'result' paragraph.
              - Format: "You are <span>X</span> years, <span>Y</span> months and <span>Z</span> days old"
          */
 
          // Placeholder:
-         result.innerHTML = "You are <span>--</span> years, <span>--</span> months and <span>--</span> days old";
+         result.innerHTML = `You are <span>${newYeardiff}</span> years, <span>${monthDiff}</span> months and <span>${todayDate}</span> days old`;
       }
 
       function getDaysInMonth(year, month) {
