@@ -123,22 +123,31 @@
 
       function calculateAge() {
 
-         const birthDate=userInput.value;
-         console.log(birthDate);
+         const birthDate = userInput.value;
+         console.log(`Birth Date= ${birthDate}`);
 
-         const todayDate= new Date();
+         const todayDate = new Date();
          console.log(todayDate);
 
+         yearDiff = todayDate.getFullYear() - new Date(birthDate).getFullYear()
+         console.log(`age Date= ${yearDiff}`);
 
 
+         monthDiff = todayDate.getMonth() - new Date(birthDate).getMonth();
+         console.log(`month Date= ${monthDiff}`);
+
+
+         if(monthDiff<0 || monthDiff==0 && todayDate<birthDate){
+             newYeardiff= yearDiff+1;
          
+         console.log(newYeardiff);
+         }
+
+
+
+
+
          /* 
-        
-          
-          1. Get the user selected date value from 'userInput'.
-          2. Create a new Date object from that value (birthDate).
-          3. Get the current date (today).
-          
           4. Calculate the difference in Years:
              - yearDiff = today.year - birthDate.year
              
