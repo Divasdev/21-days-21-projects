@@ -55,14 +55,26 @@
          margin-bottom: 30px;
       }
 
+      .progress-container {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         margin: 30px 0;
+      }
+
+      .progress-container span {
+         font-size: 12px;
+         color: #555;
+         width: 40px;
+      }
+
       #progress {
- 
-         width: 100%;
+         flex: 1;
          height: 6px;
          background: #f53192;
          border-radius: 4px;
          cursor: pointer;
-         margin: 40px 0;
+         appearance: none;
       }
 
       #progress::-webkit-slider-thumb {
@@ -128,8 +140,12 @@
          <source src="despacito.mp3" type="audio/mpeg">
       </audio>
 
-      <input type="range" value="0" id="progress">
-
+      <div class="progress-container">
+         <span id="current-time">0:00</span>
+         <input type="range" value="0" id="progress">
+         <span id="duration">0:00</span>
+      </div>
+      
       <div class="controls">
          <div onclick="playPause()"><i class="fa-solid fa-backward"></i></div>
          <div onclick="playPause()" id="ctrlIcon"><i class="fa-solid fa-play"></i></div>
@@ -156,14 +172,26 @@
        
          }
 
-      song.addEventListener("timeupdate",()=>{
-          let songTime=song.currentTime;
-          let songDuration=song.duration;
-          console.log(songTime,songDuration);
+      song.addEventListener("timeupdate", () => {
+
+          let songTime = song.currentTime;
+          let songDuration = song.duration;
+
           if (!isNaN(songDuration)) {
-             percentage=(songTime/songDuration) *100;
+
+              let percentage = (songTime / songDuration) * 100;
+              progress.value = percentage;
+
+              // Format current time
+              const minutes = Math.floor(songTime / 60);
+              const seconds = Math.floor(songTime % 60).toString().padStart(2, '0');
+              document.getElementById("current-time").textContent = `${minutes}:${seconds}`;
+
+              // Format duration
+              const dMinutes = Math.floor(songDuration / 60);
+              const dSeconds = Math.floor(songDuration % 60).toString().padStart(2, '0');
+              document.getElementById("duration").textContent = `${dMinutes}:${dSeconds}`;
           }
-          progress.value=percentage;
       });
 
       progress.addEventListener("input", () => {
@@ -175,6 +203,8 @@
        if (song.ended) {
          ctrlIcon.textContent = ">";
        }
+       
+
 
       }
    playPause(); 
