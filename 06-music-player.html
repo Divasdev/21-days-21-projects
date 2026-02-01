@@ -56,7 +56,7 @@
       }
 
       #progress {
-         -webkit-appearance: none;
+ 
          width: 100%;
          height: 6px;
          background: #f53192;
@@ -125,7 +125,7 @@
 
       <audio id="song">
          <!-- Source needs to be a valid MP3 file or URL -->
-         <source src="song-placeholder.mp3" type="audio/mpeg">
+         <source src="despacito.mp3" type="audio/mpeg">
       </audio>
 
       <input type="range" value="0" id="progress">
@@ -138,14 +138,33 @@
    </div>
 
    <script>
-      let progress = document.getElementById("progress");
-      let song = document.getElementById("song");
-      let ctrlIcon = document.getElementById("ctrlIcon");
+      let progress = document.getElementById("progress");  //line 131
+      let song = document.getElementById("song"); //line 126
+      let ctrlIcon = document.getElementById("ctrlIcon");  //line 135
+       
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       /* 
-        ---------------------------------------------------
-        TODO: JAVASCRIPT LOGIC
-        ---------------------------------------------------
+           
+
         
         1. Wait for song metadata to load:
            - song.onloadedmetadata = function() { ... }
