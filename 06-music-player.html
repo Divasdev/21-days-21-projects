@@ -144,6 +144,41 @@
        
 
 
+    function playPause() {
+         
+           if (song.paused){
+               song.play();
+               ctrlIcon.textContent="||";
+           }
+           else{
+            song.pause();
+            ctrlIcon.textContent=">";
+       
+         }
+
+      song.addEventListener("timeupdate",()=>{
+          let songTime=song.currentTime;
+          let songDuration=song.duration;
+          console.log(songTime,songDuration);
+          if (!isNaN(songDuration)) {
+             percentage=(songTime/songDuration) *100;
+          }
+          progress.value=percentage;
+      });
+
+      progress.addEventListener("input", () => {
+         let slideTime = progress.value;
+         let newTime = (slideTime / 100) * song.duration;
+         song.currentTime = newTime;
+      });
+       
+       if (song.ended) {
+         ctrlIcon.textContent = ">";
+       }
+
+      }
+   playPause(); 
+
       
 
 
@@ -188,10 +223,7 @@
              - progress.onchange = function(){ song.currentTime = progress.value; song.play(); ... }
       */
 
-      function playPause() {
-        
-        
-      }
+     
    </script>
 </body>
 
