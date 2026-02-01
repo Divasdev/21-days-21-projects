@@ -132,13 +132,13 @@
          yearDiff = todayDate.getFullYear() - new Date(birthDate).getFullYear()
          console.log(`age Date= ${yearDiff}`);
 
+         let newYeardiff = yearDiff;
 
          monthDiff = todayDate.getMonth() - new Date(birthDate).getMonth();
          console.log(`month Date= ${monthDiff}`);
 
-
          if (monthDiff < 0 || (monthDiff === 0 && todayDate.getDate() < new Date(birthDate).getDate())) {
-             newYeardiff= yearDiff-1;
+             newYeardiff = yearDiff - 1;
              monthDiff=monthDiff+12;
          
          console.log(newYeardiff);
@@ -156,18 +156,7 @@
            monthDiff--;
         }
 
-
-
-
-         
-         /* 
-               
-          7. Display the result in the 'result' paragraph.
-             - Format: "You are <span>X</span> years, <span>Y</span> months and <span>Z</span> days old"
-         */
-
-         // Placeholder:
-         result.innerHTML = `You are <span>${newYeardiff}</span> years, <span>${monthDiff}</span> months and <span>${todayDate}</span> days old`;
+         result.innerHTML = `You are <span>${newYeardiff}</span> years, <span>${monthDiff}</span> months and <span>${days}</span> days old`;
       }
 
       function getDaysInMonth(year, month) {
