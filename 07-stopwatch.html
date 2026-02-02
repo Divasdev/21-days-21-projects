@@ -85,12 +85,15 @@
       <div class="buttons">
          <button class="btn-control" id="stopBtn" onclick="watchStop()">
             &#9632; <!-- Square for Stop -->
+            Stop
          </button>
          <button class="btn-control" id="startBtn" onclick="watchStart()">
             &#9658; <!-- Triangle for Start -->
+            Start
          </button>
          <button class="btn-control" id="resetBtn" onclick="watchReset()">
-            &#8635; <!-- Circular arrow for Reset -->
+            &#8635;
+            Reset<!-- Circular arrow for Reset -->
          </button>
       </div>
    </div>
@@ -99,66 +102,46 @@
       let [seconds, minutes, hours] = [0, 0, 0];
       let displayTime = document.getElementById("timeDisplay");
       let timer = null;
+      function updateDisplay() {
+         let h = hours.toString().padStart(2, '0');
+         let m = minutes.toString().padStart(2, '0');
+         let s = seconds.toString().padStart(2, '0');
+         let timeString = `${h}:${m}:${s}`;
+         displayTime.textContent=timeString;  
+         }
+     
 
-      function stopwatch() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Increment 'seconds'.
-          2. Logic for overflowing seconds to minutes (at 60), 
-             and minutes to hours (at 60).
-          3. Format the numbers to always be 2 digits (e.g., '0' + seconds if seconds < 10).
-          4. Update 'displayTime.innerHTML'.
-         */
+      function runStopwatch(){
+         seconds+=1
+         if (seconds==60){
+            seconds=0;
+            minutes+=1;
+         }
+         if (minutes==60){
+            minutes=0;
+            hours+=1;
+         }
+         updateDisplay();
+      }
+    
 
+
+   function watchStart(){
+      timer=setInterval(runStopwatch,1000);
+      
+   }
+        
+         
         
 
-         // Format helper (placeholder logic)
          
-      }
 
-      function watchStart() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Clear any existing interval to prevent multiple intervals.
-          2. Start a new interval calling 'stopwatch' every 1000ms (1 second).
-         */
-         if (timer !== null) {
-            clearInterval(timer);
-         }
-         timer = setInterval(stopwatch, 1000);
-      }
 
-      function watchStop() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Clear the interval using 'clearInterval(timer)'.
-         */
-         clearInterval(timer);
-      }
+        
+         
+      
 
-      function watchReset() {
-         /* 
-          --------------------------------------------------------
-          TODO: JAVASCRIPT LOGIC
-          --------------------------------------------------------
-          
-          1. Clear the interval.
-          2. Reset [seconds, minutes, hours] to [0, 0, 0].
-          3. Update 'displayTime.innerHTML' to "00:00:00".
-         */
-         clearInterval(timer);
-         [seconds, minutes, hours] = [0, 0, 0];
-         displayTime.innerHTML = "00:00:00";
-      }
+   
    </script>
 </body>
 
