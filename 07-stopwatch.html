@@ -99,6 +99,7 @@
    </div>
 
    <script>
+   
       let [seconds, minutes, hours] = [0, 0, 0];
       let displayTime = document.getElementById("timeDisplay");
       let timer = null;
@@ -107,41 +108,41 @@
          let m = minutes.toString().padStart(2, '0');
          let s = seconds.toString().padStart(2, '0');
          let timeString = `${h}:${m}:${s}`;
-         displayTime.textContent=timeString;  
+         displayTime.textContent = timeString;
+      }
+      function runStopwatch() {
+         seconds += 1
+         if (seconds == 60) {
+            seconds = 0;
+            minutes += 1;
          }
-     
-
-      function runStopwatch(){
-         seconds+=1
-         if (seconds==60){
-            seconds=0;
-            minutes+=1;
-         }
-         if (minutes==60){
-            minutes=0;
-            hours+=1;
+         if (minutes == 60) {
+            minutes = 0;
+            hours += 1;
          }
          updateDisplay();
       }
-    
+      function watchStart() {
+         if (timer !== null) return;
+         timer = setInterval(runStopwatch, 1000);
+      }
+      function watchStop() {
 
+         if(timer)
+         clearInterval(timer);
+         timer = null;
 
-   function watchStart(){
-      timer=setInterval(runStopwatch,1000);
-      
-   }
-        
-         
-        
+      }
+      function watchReset() {
+         clearInterval(timer);
+         timer = null;
+         seconds = 0;
+         minutes = 0;
+         hours = 0;
+         updateDisplay();
+      }
 
-         
-
-
-        
-         
-      
-
-   
+updateDisplay();
    </script>
 </body>
 
